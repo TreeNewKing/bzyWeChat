@@ -1,0 +1,34 @@
+<html>
+<!
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    document.write("hello html")
+        var i=0
+    function myFunction(){
+        if (i===0){
+        document.getElementById("demo").innerText="变换后的元素"
+            document.getElementById("demo").style.color="red"
+        i=1
+        }else {
+            document.getElementById("demo").innerText="变化前的元素"
+            document.getElementById("demo").style.color="blue"
+
+            i=0
+        }
+    }
+</script>
+<p id="demo">
+    可被js控制的demo
+</p>
+<button onclick="myFunction()">变换元素</button>
+</body>
+</html>
+</html>
