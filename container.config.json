@@ -1,0 +1,31 @@
+{
+	// 本配置文件仅配合模板部署使用，为模板部署的服务生成「服务设置」的初始值。
+	// 模板部署结束后，后续服务发布与本配置文件完全无关，修改「服务设置」请到控制台操作。
+	// 复制模板代码自行开发请忽略本配置文件。
+	
+	"containerPort": 80,                            
+	"minNum": 0,                                    
+	"maxNum": 5,                                   
+	"cpu": 1,                                    	
+	"mem": 2,                                     	
+	"policyType": "cpu",                            
+	"policyThreshold": 50,
+	"policyDetails": [
+		{
+			"PolicyType": "cpu",
+			"PolicyThreshold": 50
+		},
+		{
+			"PolicyType": "mem",
+			"PolicyThreshold": 50
+		}
+	],
+	"envParams": {},                                
+	"customLogs": "stdout",                         
+	"dataBaseName":"dreamIntoStar",
+	"executeSQLs":[
+		"CREATE DATABASE IF NOT EXISTS dreamIntoStar;",
+		"USE dreamIntoStar;",
+		"-- CREATE TABLE `Counters` (\n--   `id` int(11) NOT NULL AUTO_INCREMENT,\n--   `count` int(11) NOT NULL DEFAULT '1',\n--   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n--   `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n--   PRIMARY KEY (`id`)\n-- ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8\n\n\n/*==============================================================*/\n/* DBMS name:      MySQL 5.0                                    */\n/* Created on:     2022/6/25 3:22:25                            */\n/*==============================================================*/\n\n\ndrop table if exists activity;\n\ndrop table if exists activity_application;\n\ndrop table if exists certification;\n\ndrop index uq_open_id on user;\n\ndrop table if exists user;\n\n/*==============================================================*/\n/* Table: activity                                              */\n/*==============================================================*/\ncreate table activity\n(\n    activity_id          varchar(50) not null,\n    publier_user_id      varchar(50),\n    start_date           date not null,\n    end_date             date not null,\n    required_num         int,\n    required_type        varchar(50),\n    contact_name         varchar(50),\n    contact_phone        varchar(50),\n    application_table    varchar(50) not null,\n    primary key (activity_id)\n);\n\n/*==============================================================*/\n/* Table: activity_application                                  */\n/*==============================================================*/\ncreate table activity_application\n(\n    activity_application_id varchar(50) not null,\n    user_id              varchar(50),\n    activity_id          varchar(50),\n    application_table    varchar(50) not null,\n    name                 varchar(50) not null,\n    phone                varchar(50) not null,\n    time                 datetime not null,\n    state                int not null,\n    primary key (activity_application_id)\n);\n\n/*==============================================================*/\n/* Table: certification                                         */\n/*==============================================================*/\ncreate table certification\n(\n    certification_id     varchar(50) not null,\n    user_id              varchar(50),\n    picture_url          varchar(50),\n    state                int not null,\n    time                 time not null,\n    认证信息描述               varchar(50) not null,\n    primary key (certification_id)\n);\n\n/*==============================================================*/\n/* Table: user                                                  */\n/*==============================================================*/\ncreate table user\n(\n    user_id              varchar(50) not null,\n    open_id              varchar(50) not null,\n    state                int not null,\n    primary key (user_id)\n);\n\n/*==============================================================*/\n/* Index: uq_open_id                                            */\n/*==============================================================*/\ncreate unique index uq_open_id on user\n    (\n     open_id\n        );\n\nalter table activity add constraint FK_Reference_1 foreign key (publier_user_id)\n    references user (user_id) on delete restrict on update restrict;\n\nalter table activity_application add constraint FK_Reference_2 foreign key (user_id)\n    references user (user_id) on delete restrict on update restrict;\n\nalter table activity_application add constraint FK_Reference_3 foreign key (activity_id)\n    references activity (activity_id) on delete restrict on update restrict;\n\nalter table certification add constraint FK_Reference_4 foreign key (user_id)\n    references user (user_id) on delete restrict on update restrict;\n\n;"
+	]                                               
+}

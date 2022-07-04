@@ -1,0 +1,9 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://sh-cynosdbmysql-grp-jg9t9mn0.sql.tencentcdb.com:27250/bzyWechat
+    username: root
+    password: y7p=8hH6LUlA0$Oq4..
