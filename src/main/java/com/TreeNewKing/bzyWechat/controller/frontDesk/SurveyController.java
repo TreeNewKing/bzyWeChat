@@ -2,12 +2,15 @@ package com.TreeNewKing.bzyWechat.controller.frontDesk;
 
 import com.TreeNewKing.bzyWechat.config.ApiResponse;
 import com.TreeNewKing.bzyWechat.model.entity.Problem;
+import com.TreeNewKing.bzyWechat.model.entity.SurveyRecord;
 import com.TreeNewKing.bzyWechat.model.req.SubmitReq;
 import com.TreeNewKing.bzyWechat.model.resp.HistoryInfoResp;
 import com.TreeNewKing.bzyWechat.model.resp.ProblemBankResp;
 import com.TreeNewKing.bzyWechat.service.SurveyService;
+import com.TreeNewKing.bzyWechat.utils.JWTUtils;
 import io.swagger.annotations.Api;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
@@ -27,12 +30,10 @@ public class SurveyController {
 
     @GetMapping("/info")
     public ApiResponse getHistoryInfo(@RequestHeader("Authorization") String token){
-        //TODO 获取调查问卷
+        JWTUtils.JWTDto jwtDto = JWTUtils.getJWTDto(token);
+        SurveyRecord recentInfo = surveyService.getRecentInfo(jwtDto.getUserId());
         HistoryInfoResp historyInfoResp = new HistoryInfoResp();
-        historyInfoResp.setHeight(179.0);
-        historyInfoResp.setLifeIn("成都");
-        historyInfoResp.setTeaAge(18);
-        historyInfoResp.setProfessional("程序员");
+        BeanUtils.copyProperties(recentInfo,historyInfoResp);
         return ApiResponse.ok(historyInfoResp);
     }
 
