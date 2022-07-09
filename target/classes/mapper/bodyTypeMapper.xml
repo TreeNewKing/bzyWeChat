@@ -5,4 +5,7 @@
 <select id="getAllBodyType" resultType="com.TreeNewKing.bzyWechat.model.resp.BodyTypeRespAll">
     select * from body_type order by sequence
 </select>
+    <select id="getTeaCommendByBodyTypeId" resultType="com.TreeNewKing.bzyWechat.model.entity.TeaCommend">
+        select  * from tea_recommend where bodyTypeId=#{bodyTypId}
+    </select>
 </mapper>
