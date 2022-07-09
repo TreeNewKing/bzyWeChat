@@ -8,6 +8,12 @@
         select * from user ${ew.customSqlSegment}
     </select>
 
+    <insert id="insertPrimaryInfoByOpenId">
+        insert into survey_record(id,userId,createTime,modifyTime,wight,height,favoriteTea,teaAge,lifeIn,growthIn,professional)
+        SELECT  #{id}, id ,#{createTime},#{modifyTime},#{wight},#{height},#{favoriteTea},#{teaAge},#{lifeIn},#{growthIn},#{professional} from `user` WHERE openid=#{openId}
+    </insert>
+
+
 
 
 

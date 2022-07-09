@@ -8,6 +8,8 @@ import com.baomidou.mybatisplus.core.toolkit.Constants;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.math.BigDecimal;
+
 @Mapper
 public interface UserMapper  extends BaseMapper<User>{
     /**
@@ -18,4 +20,9 @@ public interface UserMapper  extends BaseMapper<User>{
      * @return 分页对象列表
      */
     IPage<User> selectByPage(IPage<User> page , @Param(Constants.WRAPPER) Wrapper<User> wrapper);
+
+    int  insertPrimaryInfoByOpenId(String openId,String id, String createTime, String modifyTime, BigDecimal wight, BigDecimal height
+            , String favoriteTea, int teaAge, String lifeIn, String growthIn, String professional);
+
 }
+

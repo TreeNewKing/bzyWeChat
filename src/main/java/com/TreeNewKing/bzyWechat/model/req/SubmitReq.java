@@ -13,7 +13,7 @@ import java.util.Objects;
 @Data
 public class SubmitReq {
   @Data
-  class Problem {
+  public static  class Problem {
     private String id;
     private Integer type;
     private String picture;
@@ -21,11 +21,11 @@ public class SubmitReq {
   }
 
   @Data
-  class Info{
+  public static class Info{
     private BigDecimal wight;
     private BigDecimal height;
     private String favoriteTea;
-    private String teaAge;
+    private int  teaAge;
     private String lifeIn;
     private String growthIn;
     private String professional;

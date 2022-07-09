@@ -34,4 +34,10 @@ public class SurveyServiceImpl implements SurveyService {
         }
         return problems;
     }
+
+    @Override
+    public int insertRecordDetail(String problemId,String recordId, String optionsId, Integer type) {
+     int rs= problemMapper.insertRecordDetail(problemId,recordId,optionsId,type);
+        return rs;
+    }
 }

@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -154,6 +155,12 @@ public class UserServiceImpl implements UserService {
     public boolean deleteById(String id){
         int total = userMapper.deleteById(id);
         return total > 0;
+    }
+
+    @Override
+    public int insertPrimaryInfoByOpenId(String openId,String id, String createTime, String modifyTime, BigDecimal wight, BigDecimal height, String favoriteTea, int teaAge, String lifeIn, String growthIn, String professional) {
+       int rs= userMapper.insertPrimaryInfoByOpenId(openId,id,createTime,modifyTime,wight,height,favoriteTea,teaAge,lifeIn,growthIn,professional);
+       return rs;
     }
 
 

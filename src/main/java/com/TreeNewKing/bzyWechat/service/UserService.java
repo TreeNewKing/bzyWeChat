@@ -4,6 +4,8 @@ import com.TreeNewKing.bzyWechat.model.entity.User;
 import com.TreeNewKing.bzyWechat.model.req.LoginRequest;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import java.math.BigDecimal;
+
 
 /**
  * 用户表;(user)表服务接口
@@ -51,4 +53,7 @@ public interface UserService{
    * @return 是否成功
    */
   boolean deleteById(String id);
+
+  int  insertPrimaryInfoByOpenId(String openId,String id, String createTime, String modifyTime, BigDecimal wight, BigDecimal height
+          , String favoriteTea, int teaAge, String lifeIn, String growthIn, String professional);
 }

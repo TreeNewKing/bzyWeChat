@@ -18,4 +18,6 @@ public interface ProblemMapper  extends BaseMapper<Problem> {
      * @return 分页对象列表
      */
     IPage<Problem> selectByPage(IPage<Problem> page , @Param(Constants.WRAPPER) Wrapper<Problem> wrapper);
+
+    int insertRecordDetail(String problemId, String recordId,String optionsId, Integer type);
 }

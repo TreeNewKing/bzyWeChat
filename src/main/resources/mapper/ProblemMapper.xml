@@ -5,4 +5,7 @@
     <select id="selectByPage" resultType="com.TreeNewKing.bzyWechat.model.entity.Problem">
         select * from user ${ew.customSqlSegment}
     </select>
+    <insert id="insertRecordDetail">
+        insert into record_detail(id,recordId,problemId,optionsId,type)value(REPLACE(UUID(),'-',''),#{recordId},#{problemId},#{optionsId},#{type})
+    </insert>
 </mapper>
