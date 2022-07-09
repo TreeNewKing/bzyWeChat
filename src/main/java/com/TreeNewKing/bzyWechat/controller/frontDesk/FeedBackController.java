@@ -22,7 +22,7 @@ public class FeedBackController {
         try {
         String email_Receiver=feedBackInfo.getEmail();
         String title="感谢你的反馈";
-        String content="我们已经成功收到了您关于本系统关于【"+feedBackInfo.getDescription()+"】的反馈。我们会尽快进行改善何修复。感谢您的支持";
+        String content="我们已经成功收到了您关于本系统关于【"+feedBackInfo.getDescription()+"】的反馈。我们会尽快进行改善和修复。感谢您的支持";
         EmailUtils.sendSimpleMail(emailMaker,email_Receiver,title,content);
         feedBackService.insertFeedBackToDb(feedBackInfo);
         }catch (Exception e){
