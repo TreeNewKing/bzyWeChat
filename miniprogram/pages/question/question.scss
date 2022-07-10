@@ -1,0 +1,37 @@
+/* pages/question/question.wxss */
+.user-head {
+  margin: 20rpx 20rpx;
+  padding-bottom: 40rpx;
+  border-bottom: 1px dashed #ccc;
+
+  .head {
+    margin: 40rpx 0;
+    display: inline-block;
+    font-size: 48rpx;
+    color: #0095ff;
+    width: 100%;
+    text-align: center;
+    font-family: "宋体",sans-serif;
+  }
+
+  .content {
+    display: inline-block;
+    margin: 10rpx 20rpx;
+    font-size: 30rpx;
+    line-height: 48rpx;
+    font-family: "PingFang SC", "helvetica neue", arial, 阿里巴巴普惠体, "思源黑体 CN", "microsoft yahei ui", "microsoft yahei", "sans-serif";
+    // text-indent: 1.5em;
+  }
+}
+
+.submit {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 20rpx 0;
+  padding-bottom: 60rpx;
+
+  .button {
+    width: 250rpx !important;
+  }
+}

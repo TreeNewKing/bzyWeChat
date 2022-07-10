@@ -1,0 +1,26 @@
+<!--components/userinfocell/userinfocell.wxml-->
+<view class="field">
+  <view class="q-title">
+    <text style="color: red;display: inline;">*</text>
+    <text>{{ idx }}. {{ title }}</text>
+  </view>
+  <view class="q-content">
+    <van-radio-group value="{{ radio }}" bind:change="onChange">
+      <view class="q-item" wx:for="{{ data }}" wx:key="index">
+        <van-radio name="{{item.id}}">{{item.description}}</van-radio>
+      </view>
+      <!-- <view class="q-item">
+        <van-radio name="2">很少（有一点）</van-radio>
+      </view>
+      <view class="q-item">
+        <van-radio name="3">有时（有些）</van-radio>
+      </view>
+      <view class="q-item">
+        <van-radio name="4">经常（相当）</van-radio>
+      </view>
+      <view class="q-item">
+        <van-radio name="5">总是（非常）</van-radio>
+      </view> -->
+    </van-radio-group>
+  </view>
+</view>

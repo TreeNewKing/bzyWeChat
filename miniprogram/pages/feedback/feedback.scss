@@ -1,0 +1,50 @@
+/* pages/feedback/feedback.wxss */
+.feedback-container {
+  background-color: rgb(247, 248, 250);
+  height: 100vh;
+}
+
+.feedback-head {
+  display: inline-block;
+  padding-top: 40rpx;
+  padding-bottom: 20rpx;
+  padding-left: 45rpx;
+  width: 500rpx;
+  font-size: 40rpx;
+  font-weight: 600;
+  font-family: "宋体",sans-serif;
+}
+
+.group {
+  background-color: #fff;
+}
+
+
+.textarea {
+  min-height: 100px !important;
+}
+
+.upload {
+  padding: 40rpx 0 0 40rpx;
+  display: block;
+  background-color: #fff;
+}
+
+.head {
+  display: block;
+  padding: 40rpx 0 0 50rpx;
+  font-size: 40rpx;
+  font-weight: 600;
+  font-family: "宋体",sans-serif;
+  background-color: #fff;
+}
+
+.button {
+  padding-top: 80rpx;
+  background-color: rgb(247, 248, 250);
+  text-align: center;
+
+  .button-submit {
+    border-radius: 15rpx !important;
+  }
+}

@@ -1,0 +1,21 @@
+<!--pages/history/history.wxml-->
+<view class="history">
+  <van-empty description="暂无历史记录" wx:if="{{isNull}}" />
+  <view class="item" wx:else>
+    <van-cell-group
+      inset
+      wx:for="{{record}}"
+      wx:for-index="index"
+      wx:for-item="item"
+      wx:key="index"
+    >
+      <van-cell
+        title="{{item.id}}"
+        value="详情"
+        label="{{item.time}}"
+        is-link
+        custom-class="item-content"
+      />
+    </van-cell-group>
+  </view>
+</view>

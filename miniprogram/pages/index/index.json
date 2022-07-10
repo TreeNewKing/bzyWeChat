@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "buttonitem": "../../components/buttonitem/buttonitem"
+  },
+  "navigationBarBackgroundColor": "#00b26a"
+}

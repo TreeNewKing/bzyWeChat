@@ -1,0 +1,148 @@
+<!--pages/userInformation/userInformation.wxml-->
+<view class="info-container">
+  <van-dialog
+    use-slot
+    title="昵称修改"
+    show="{{ showNickName }}"
+    showCancelButton="{{true}}"
+    showConfirmButton="{{true}}"
+    bind:cancel="cancelChangeNickname"
+    bind:confirm="confirmChangeNickname"
+  >
+    <van-field
+      model:value="{{ changedNickName }}"
+      placeholder="请输入昵称"
+      border="{{ true }}"
+      custom-class="field-input"
+    />
+  </van-dialog>
+  <van-dialog
+    use-slot
+    title="身高修改"
+    show="{{ showHeight }}"
+    show-cancel-button
+    bind:cancel="cancelChangeHeight"
+    bind:confirm="confirmChangeHeight"
+  >
+    <van-field
+      model:value="{{ changedHeight }}"
+      placeholder="请输入身高"
+      border="{{ true }}"
+      custom-class="field-input"
+    />
+  </van-dialog>
+  <van-dialog
+    use-slot
+    title="体重修改"
+    show="{{ showWeight }}"
+    show-cancel-button
+    bind:cancel="cancelChangeWeight"
+    bind:confirm="confirmChangeWeight"
+  >
+    <van-field
+      model:value="{{ changedWeight }}"
+      placeholder="请输入体重"
+      border="{{ true }}"
+      custom-class="field-input"
+    />
+  </van-dialog>
+  <van-dialog
+    use-slot
+    title="茶龄修改"
+    show="{{ showTeaage }}"
+    show-cancel-button
+    bind:cancel="cancelChangeTeaage"
+    bind:confirm="confirmChangeTeaage"
+  >
+    <van-field
+      model:value="{{ changedTeaage }}"
+      placeholder="请输入茶龄"
+      border="{{ true }}"
+      custom-class="field-input"
+    />
+  </van-dialog>
+  <van-dialog
+    use-slot
+    title="喜好修改"
+    show="{{ showFavorite }}"
+    show-cancel-button
+  >
+    <van-field
+      model:value="{{ changedFavorite }}"
+      placeholder="请输入喜欢的茶叶"
+      border="{{ true }}"
+      custom-class="field-input"
+      bind:cancel="cancelChangeFavorite"
+      bind:close="cancelChangeFavorite"
+      bind:confirm="confirmChangeFavorite"
+    />
+  </van-dialog>
+  <van-dialog
+    use-slot
+    title="职业修改"
+    show="{{ showProfession }}"
+    show-cancel-button
+    bind:cancel="cancelChangeProfession"
+    bind:confirm="confirmChangeProfession"
+  >
+    <van-field
+      model:value="{{ changedProfession }}"
+      placeholder="请输入职业"
+      border="{{ true }}"
+      custom-class="field-input"
+    />
+  </van-dialog>
+  <van-dialog
+    use-slot
+    title="出生地修改"
+    show="{{ showGrowthin }}"
+    show-cancel-button
+    bind:cancel="cancelChangeGrowthin"
+    bind:confirm="confirmChangeGrowthin"
+  >
+    <van-field
+      model:value="{{ changedGrowthin }}"
+      placeholder="请输入出生地"
+      border="{{ true }}"
+      custom-class="field-input"
+    />
+  </van-dialog>
+  <van-dialog
+    use-slot
+    title="现居地修改"
+    show="{{ showLifein }}"
+    show-cancel-button
+    bind:cancel="cancelChangeLifein"
+    bind:confirm="confirmChangeLifein"
+  >
+    <van-field
+      model:value="{{ changedLifein }}"
+      placeholder="请输入现居地"
+      border="{{ true }}"
+      custom-class="field-input"
+    />
+  </van-dialog>
+
+  <van-cell-group inset>
+    <!-- 昵称直接从storage中取微信昵称 -->
+    <van-cell title="昵称" value="{{ nickName }}" is-link bind:tap="clickToNickname" />
+    <van-cell title="身高" value="{{ height }}" label="单位:厘米(cm)" is-link bind:tap="clickToHeight" />
+    <van-cell title="体重" value="{{ weight }}" label="单位:千克(kg)" is-link bind:tap="clickToWeight" />
+    <van-cell title="茶龄" value="{{ teaAge }}" label="单位:年(y)" is-link bind:tap="clickToTeaage" />
+    <van-cell title="喜欢的茶叶" value="{{ favoriteTea }}" is-link bind:tap="clickToFavorite" />
+    <van-cell title="职业" value="{{ professional }}" is-link bind:tap="clickToProfession" />
+    <van-cell title="出生地" value="{{ growthIn }}" is-link bind:tap="clickToGrowthin" />
+    <van-cell title="现居地" value="{{ lifeIn }}" is-link bind:tap="clickToLifein" />
+  </van-cell-group>
+
+  <view class="gap">
+    <van-cell-group inset>
+      <van-button
+        type="primary"
+        block
+        custom-class="button-logout"
+        bindtap="clickToLogout"
+      >更改个人信息</van-button>
+    </van-cell-group>
+  </view>
+</view>

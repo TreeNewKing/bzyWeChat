@@ -1,0 +1,19 @@
+/* pages/userInformation/userInformation.wxss */
+.info-container {
+  height: 100vh;
+  background-color: rgb(247, 248, 250);
+  padding-top: 20rpx;
+
+  .gap {
+    margin-top: 40rpx;
+
+    .button-logout {
+      font-size: 32rpx;
+      border: 0;
+    }
+  }
+}
+
+.field-input {
+  border: 1px solid #333;
+}

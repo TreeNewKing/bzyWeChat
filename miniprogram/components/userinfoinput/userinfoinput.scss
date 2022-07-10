@@ -1,0 +1,25 @@
+/* components/userinfoinput/userinfoinput.wxss */
+.field {
+  margin: 0 0 10px 0;
+  clear: both;
+  padding: 20px;
+  border: 1px solid transparent;
+
+  .q-title {
+    font-size: 36rpx;
+    margin-bottom: 20rpx;
+  }
+
+  .q-content {
+    margin: 12rpx 0 0 0;
+
+    .q-item {
+      padding: 8px 10px 8px 0;
+    }
+  }
+
+  .group {
+    // background-color: pink !important;
+    box-shadow: 0 0 10rpx rgba(0,0,0,0.1);
+  }
+}

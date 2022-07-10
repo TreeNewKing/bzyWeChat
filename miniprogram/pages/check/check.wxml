@@ -1,0 +1,6 @@
+<!--pages/check/check.wxml-->
+<view class="check-container">
+  <view wx:for="{{ data }}" wx:key="index">
+    <body-cate tag="{{item.name}}" desc="{{item.describe}}" bodytype="{{item.id}}" />
+  </view>
+</view>

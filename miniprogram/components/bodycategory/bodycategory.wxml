@@ -1,0 +1,14 @@
+<!--components/bodycategory/bodycategory.wxml-->
+<van-card
+    tag="{{tag}}"
+    desc="{{desc}}"
+    title="总体特征"
+  >
+  <view slot="footer">
+    <van-button
+      size="mini"
+      type="info"
+      bind:tap="navigateToDetail"
+    >详情</van-button>
+  </view>
+</van-card>

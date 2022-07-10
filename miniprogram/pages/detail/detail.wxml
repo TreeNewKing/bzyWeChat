@@ -1,0 +1,42 @@
+<!--pages/detail/detail.wxml-->
+<view class="detail-container">
+  <view class="head">
+    <text class="title">{{body}}</text>
+  </view>
+  <view class="content">
+    <text class="label">饮茶建议</text>
+    <text class="desc">阴阳气血调和，以体态适中、面色红润、精力充沛等为主要特征。</text>
+  </view>
+  <view class="content">
+    <text class="label">早茶</text>
+    <text class="desc">体形匀称健壮。</text>
+  </view>
+  <view class="content">
+    <text class="label">午茶</text>
+    <text class="desc">面色、肤色润泽，头发稠密有光泽，目光有神，鼻色明润，嗅觉通利，唇色红润，不易疲劳，精力充沛，耐受寒热，睡眠良好，胃纳佳，二便正常，舌色淡红，苔薄白，脉和缓有力。</text>
+  </view>
+  <view class="content">
+    <text class="label">晚茶</text>
+    <text class="desc">性格随和开朗。</text>
+  </view>
+  <view class="content">
+    <text class="label">春茶</text>
+    <text class="desc">平素患病较少。</text>
+  </view>
+  <view class="content">
+    <text class="label">夏茶</text>
+    <text class="desc">对自然环境和社会环境适应能力较强。</text>
+  </view>
+  <view class="content">
+    <text class="label">秋茶</text>
+    <text class="desc">对自然环境和社会环境适应能力较强。</text>
+  </view>
+  <view class="content">
+    <text class="label">冬茶</text>
+    <text class="desc">对自然环境和社会环境适应能力较强。</text>
+  </view>
+  <view class="content">
+    <text class="label">专属推荐</text>
+    <text class="desc">对自然环境和社会环境适应能力较强。</text>
+  </view>
+</view>

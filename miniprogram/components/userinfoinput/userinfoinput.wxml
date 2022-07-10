@@ -1,0 +1,17 @@
+<!--components/userinfoinput/userinfoinput.wxml-->
+<view class="field">
+  <view class="q-title" wx:if="{{!optinal}}">
+    <text style="color: red;display: inline;">*</text>
+    <text>{{ title }}</text>
+  </view>
+  <view class="q-content">
+    <van-cell-group inset custom-class="group">
+      <van-field
+        model:value="{{ value }}"
+        placeholder="{{ message }}"
+        border="{{ false }}"
+        bind:change="onChange"
+      />
+    </van-cell-group>
+  </view>
+</view>

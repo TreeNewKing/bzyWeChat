@@ -1,0 +1,14 @@
+<!--components/userinfoitem/userinfoitem.wxml-->
+<view class="field">
+  <view class="q-title">
+    <text style="color: red;display: inline;">*</text>
+    <text>{{ title }}</text>
+  </view>
+  <view class="q-content">
+    <van-radio-group value="{{ radio }}" bind:change="onChange">
+      <view class="q-item" wx:for="{{ options }}" wx:key="index">
+        <van-radio name="{{index}}">{{item}}</van-radio>
+      </view>
+    </van-radio-group>
+  </view>
+</view>

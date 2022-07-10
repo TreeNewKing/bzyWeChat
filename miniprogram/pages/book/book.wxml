@@ -1,0 +1,2 @@
+<!--pages/book/book.wxml-->
+<van-empty description="暂无推荐，等待后续开发" />

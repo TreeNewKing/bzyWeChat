@@ -1,0 +1,37 @@
+<!--pages/list/list.wxml-->
+<view class="list-container">
+  <view class="list-head">
+    <view class="user-avatar" bind:tap="clickToLogin">
+      <van-image
+        round
+        width="7rem"
+        height="7rem"
+        src="{{userAvatar}}"
+      />
+      <view class="user-name">
+        <text class="user-name-text">{{ userName }}</text>
+      </view>
+    </view>
+  </view>
+
+  <van-cell-group inset>
+    <!-- <van-cell title="当前版本" value="V0.00.01" label="当前处于确定需求环节，内容板块仅为演示" /> -->
+    <van-cell title="个人信息" icon="info-o" is-link link-type="navigateTo" url="/pages/userInformation/userInformation" />
+    <van-cell title="历史记录" icon="browsing-history-o" is-link link-type="navigateTo" url="/pages/history/history" />
+    <van-cell title="设置" icon="setting-o" is-link bind:tap="toSetting" />
+    <van-cell title="意见反馈" icon="newspaper-o" is-link link-type="navigateTo" url="/pages/feedback/feedback" />
+  </van-cell-group>
+
+
+
+  <view class="gap">
+    <van-cell-group inset>
+      <van-button
+        type="danger"
+        block
+        custom-class="button-logout"
+        bindtap="clickToLogout"
+      >退 出 登 录</van-button>
+    </van-cell-group>
+  </view>
+</view>

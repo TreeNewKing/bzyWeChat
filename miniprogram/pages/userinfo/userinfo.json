@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "userinfo": "../../components/userinfoitem/userinfoitem",
+    "userinput": "../../components/userinfoinput/userinfoinput"
+  }
+}

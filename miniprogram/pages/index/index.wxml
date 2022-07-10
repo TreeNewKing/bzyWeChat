@@ -1,0 +1,79 @@
+<!--index.wxml-->
+<view class="container1">
+  <view class="project-info">
+    <swiper
+      class="swiper-container"
+      indicator-dots="true"
+      indicator-active-color="rgb(223,93,12)"
+      autoplay="true"
+      current="1"
+    >
+      <swiper-item>
+        <view class="swiper-item">老迈思想茶携手与您走进茶与人生！祝君安康！</view>
+      </swiper-item>
+      <swiper-item>
+        <image
+          src="http://82.157.232.71/images/logo-p.png"
+          class="swipper-image"
+          mode="scaleToFill"
+        ></image>
+      </swiper-item>
+      <swiper-item>
+        <view class="swiper-item">尊敬的朋友，您好，通过这份中医体质与茶疗自测问卷，您将免费获得自身中医体质状态的评估结果以及与您体质适配的茶品推荐，祝愿茶成为您生命中不可或缺的部分。</view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <view class="message">
+    <van-notice-bar
+      left-icon="volume-o"
+      text="{{message}}"
+    />
+  </view>
+
+  <view class="operation">
+    <!-- <view class="op op1">
+      <image src="../../images/user-solid.svg" mode="scaleToFill" class="svgimg"></image>
+      <text class="text">填写个人信息</text>
+    </view>
+    <view class="op op2">
+      <image src="../../images/file-pen-solid.svg" mode="scaleToFill" class="svgimg"></image>
+      <text class="text">完成问卷调查</text>
+    </view>
+    <view class="op op3">
+      <image src="../../images/magnifying-glass-solid.svg" mode="scaleToFill" class="svgimg"></image>
+      <text class="text">查看个人体质</text>
+    </view>
+    <view class="op op4">
+      <image src="../../images/book-atlas-solid.svg" mode="scaleToFill" class="svgimg"></image>
+      <text class="text">查看推荐茶叶</text>
+    </view> -->
+    <buttonitem
+      color="填写调查问卷获取推荐"
+      imgurl="http://82.157.232.71/images/table-p.png"
+      other="http://82.157.232.71/images/recom-l.png"
+      info="调查问卷"
+      bindtap="navigateToUser"
+    />
+    <buttonitem
+      color="体质介绍和茶叶信息"
+      other="http://82.157.232.71/images/recom-r.png"
+      imgurl="http://82.157.232.71/images/tea-p.png"
+      info="相关介绍"
+      style="margin-left: 10px;"
+      bindtap="navigateToCheck"
+    />
+    <!-- <buttonitem color="background-color: #F4D03F; background-image: linear-gradient(132deg, #F4D03F 0%, #16A085 100%);"  imgurl="../../images/magnifying-glass-solid.svg" info="查看个人体质" bindtap="navigateToCheck"/>
+    <buttonitem color="background-color: #74EBD5; background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%);"  imgurl="../../images/book-atlas-solid.svg" info="查看推荐茶叶" bindtap="navigateToBook"/> -->
+  </view>
+
+  <!-- <van-grid column-num="2" class="index-op">
+    <van-grid-item use-slot wx:for="{{ 4 }}" wx:for-item="index">
+      <image
+        style="width: 40%;height: 180rpx;display: block;margin: 10rpx auto 0;"
+        src="../../images/user-solid.svg"
+      />
+      <text class="text">完善个人信息</text>
+    </van-grid-item>
+  </van-grid> -->
+</view>

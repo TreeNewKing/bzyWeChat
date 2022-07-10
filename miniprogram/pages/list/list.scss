@@ -1,0 +1,40 @@
+/* pages/list/list.wxss */
+.list-container {
+  background-color: rgb(247,248,250);
+  font-size: 80rpx;
+  height: 100vh;
+
+  .gap {
+    margin-top: 40rpx;
+
+    .button-logout {
+      font-size: 32rpx;
+      background-color: rgb(228, 69, 95);
+      border: 0;
+    }
+  }
+
+  .list-head {
+    padding-top: 20rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 30rpx;
+
+    .user-name {
+      display: flex;
+      margin-top: 0rpx;
+      margin-bottom: 20rpx;
+      max-width: 7rem;
+      flex-direction: row;
+      justify-content: center;
+
+      .user-name-text {
+        font-size: large;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+      }
+    }
+  }
+}

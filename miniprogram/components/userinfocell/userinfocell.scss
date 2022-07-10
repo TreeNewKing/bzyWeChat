@@ -1,0 +1,20 @@
+/* components/userinfoitem/userinfoitem.wxss */
+.field {
+  margin: 0 0 10px 0;
+  clear: both;
+  padding: 20px;
+  border: 1px solid transparent;
+
+  .q-title {
+    font-size: 36rpx;
+    margin-bottom: 20rpx;
+  }
+
+  .q-content {
+    margin: 12rpx 0 0 36rpx;
+
+    .q-item {
+      padding: 8px 10px 8px 0;
+    }
+  }
+}

@@ -1,0 +1,44 @@
+/* pages/detail/detail.wxss */
+.head {
+  margin: 20rpx 0rpx 0 0rpx;
+  padding-bottom: 40rpx;
+  border-bottom: 1px solid #ccc;
+
+  .title {
+    margin: 40rpx 0;
+    display: inline-block;
+    font-size: 48rpx;
+    color: red;
+    width: 100%;
+    text-align: center;
+    font-family: "宋体",sans-serif;
+  }
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+
+  .label {
+    display: inline-block;
+    width: 180rpx;
+    font-size: 34rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    text-align: center;
+  }
+
+  .desc {
+    display: inline-block;
+    padding: 30rpx 10rpx 20rpx 0;
+    width: calc(100% - 180rpx);
+    font-size: 34rpx;
+    border-left: 1px solid #ccc;
+    padding-left: 20rpx;
+  }
+}
+
+.detail-container {
+  padding-bottom: 80rpx;
+}

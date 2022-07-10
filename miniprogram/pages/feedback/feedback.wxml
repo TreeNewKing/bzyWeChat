@@ -1,0 +1,38 @@
+<!--pages/feedback/feedback.wxml-->
+<view class="feedback-container">
+  <van-toast id="van-toast" />
+  <text class="feedback-head">反馈问题</text>
+  <van-cell-group inset class="group">
+    <van-field
+      model:value="{{ title }}"
+      placeholder="请填写问题情况"
+      border="{{ true }}"
+      label="标题"
+    />
+    <van-field
+      model:value="{{ describe }}"
+      type="textarea"
+      placeholder="请输入10个字以上的详细问题描述以便我们提供更好的服务"
+      show-word-limit
+      maxlength="200"
+      input-class="textarea"
+    />
+    <text class="head">截图</text>
+    <van-uploader
+      file-list="{{ fileList }}"
+      deletable="{{ true }}"
+      max-count="4"
+      bind:after-read="afterRead"
+      class="upload"
+    />
+  </van-cell-group>
+
+  <view class="button">
+    <van-button
+      type="primary"
+      custom-style="width: 300rpx; font-size: 32rpx"
+      custom-class="button-submit"
+      bindtap="submitFeedback"
+    >提交</van-button>
+  </view>
+</view>
