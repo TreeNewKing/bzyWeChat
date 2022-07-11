@@ -3,6 +3,6 @@
 
 <mapper namespace="com.TreeNewKing.bzyWechat.dao.ProblemMapper">
     <select id="selectByPage" resultType="com.TreeNewKing.bzyWechat.model.entity.Problem">
-        select * from user ${ew.customSqlSegment}
+        select * from problem ${ew.customSqlSegment}
     </select>
 </mapper>

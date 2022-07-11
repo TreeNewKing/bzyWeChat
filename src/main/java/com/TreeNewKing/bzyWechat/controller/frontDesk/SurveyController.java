@@ -46,8 +46,11 @@ public class SurveyController {
     }
 
 
+
     @PostMapping("/submit")
     public ApiResponse submit(@RequestHeader("Authorization") String token, @RequestBody SubmitReq submitReq){
+        JWTUtils.JWTDto jwtDto = JWTUtils.getJWTDto(token);
+        surveyService.submit(jwtDto.getUserId(),submitReq);
         //TODO 问卷调查提交
         return ApiResponse.ok();
     }

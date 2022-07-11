@@ -1,6 +1,7 @@
 package com.TreeNewKing.bzyWechat.utils;
 
 import com.TreeNewKing.bzyWechat.common.Constant;
+import com.TreeNewKing.bzyWechat.error.AppException;
 import com.TreeNewKing.bzyWechat.model.entity.User;
 import com.TreeNewKing.bzyWechat.model.resp.LoginResp;
 import com.auth0.jwt.JWT;
@@ -44,12 +45,16 @@ public class JWTUtils {
         return loginResp;
     }
 
-    public static JWTDto getJWTDto(String token){
-        JWTVerifier verifier = JWT.require(Algorithm.HMAC256(Constant.JWT_KEY)).build();
-        DecodedJWT decodedJWT = verifier.verify(token);
-        String userId = decodedJWT.getClaim(USER_ID_KEY).asString();
-        Integer isAdmin= decodedJWT.getClaim(IS_ADMIN_KEY).asInt();
-        return new JWTDto(userId,isAdmin);
+    public static JWTDto getJWTDto(String token)throws AppException {
+        try {
+            JWTVerifier verifier = JWT.require(Algorithm.HMAC256(Constant.JWT_KEY)).build();
+            DecodedJWT decodedJWT = verifier.verify(token);
+            String userId = decodedJWT.getClaim(USER_ID_KEY).asString();
+            Integer isAdmin = decodedJWT.getClaim(IS_ADMIN_KEY).asInt();
+            return new JWTDto(userId,isAdmin);
+        }catch (Exception e){
+            throw new AppException();
+        }
     }
 
 

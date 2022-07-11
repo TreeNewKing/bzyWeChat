@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="wx_ljr@localhost" uuid="2455500b-5789-4f96-bdb1-8233c1c18f5d">
+    <data-source source="LOCAL" name="bzyWechat@sh-cynosdbmysql-grp-jg9t9mn0.sql.tencentcdb.com" uuid="e534e096-3d20-4b35-b76c-6fbb522fc37a">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/wx_ljr</jdbc-url>
+      <jdbc-url>jdbc:mysql://sh-cynosdbmysql-grp-jg9t9mn0.sql.tencentcdb.com:27250/bzyWechat</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

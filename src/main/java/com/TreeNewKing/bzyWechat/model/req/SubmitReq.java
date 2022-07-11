@@ -1,39 +1,28 @@
 package com.TreeNewKing.bzyWechat.model.req;
 
+import com.TreeNewKing.bzyWechat.model.req.SubmitInfo;
+import com.TreeNewKing.bzyWechat.model.req.SubmitProblem;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
+import lombok.Data;
+
+
+
+/**
+ * TiJiaoWenJuanQingQiu
+ */
 
 
 @Data
 public class SubmitReq {
-  @Data
-  class Problem {
-    private String id;
-    private Integer type;
-    private String picture;
-    private String optionsId;
-  }
+  @JsonProperty("problem")
+  private List<SubmitProblem> problem = new ArrayList<>();
 
-  @Data
-  class Info{
-    private BigDecimal wight;
-    private BigDecimal height;
-    private String favoriteTea;
-    private String teaAge;
-    private String lifeIn;
-    private String growthIn;
-    private String professional;
-  }
-  private List<Problem> problem = new ArrayList<>();
-
-
-  private Info info;
+  @JsonProperty("info")
+  private SubmitInfo info;
 
 
 }
