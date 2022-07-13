@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public User login(LoginRequest loginRequest) {
-        AuthResp authResp = getOpenId1(loginRequest.getCode());
+        AuthResp authResp = getOpenId(loginRequest.getCode());
         QueryWrapper<User> wrapper = new QueryWrapper<User>().eq("open_id", authResp.getOpenid());
         User user = userMapper.selectOne(wrapper);
         Date now = new Date();
