@@ -30,7 +30,7 @@ public class FeedBackController {
         String content = "我们已经成功收到了您关于本系统关于【" + feedBackReq.getDescription() + "】的反馈。我们会尽快进行改善和修复。感谢您的支持";
         try {
             JWTUtils.JWTDto jwtDto = JWTUtils.getJWTDto(token);
-            EmailUtils.sendSimpleMail(emailMaker, email_Receiver, title, content);
+//            EmailUtils.sendSimpleMail(emailMaker, email_Receiver, title, content);
             Feedback feedback = new Feedback();
             BeanUtils.copyProperties(feedBackReq, feedback);
             feedback.setUserId(jwtDto.getUserId());

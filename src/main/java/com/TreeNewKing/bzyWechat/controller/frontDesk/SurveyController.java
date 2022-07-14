@@ -6,6 +6,7 @@ import com.TreeNewKing.bzyWechat.model.entity.SurveyRecord;
 import com.TreeNewKing.bzyWechat.model.req.SubmitReq;
 import com.TreeNewKing.bzyWechat.model.resp.HistoryInfoResp;
 import com.TreeNewKing.bzyWechat.model.resp.ProblemBankResp;
+import com.TreeNewKing.bzyWechat.model.resp.SubmitResp;
 import com.TreeNewKing.bzyWechat.service.SurveyService;
 import com.TreeNewKing.bzyWechat.utils.JWTUtils;
 import io.swagger.annotations.Api;
@@ -30,10 +31,15 @@ public class SurveyController {
 
     @GetMapping("/info")
     public ApiResponse getHistoryInfo(@RequestHeader("Authorization") String token){
+        log.info("获取历史个人信息");
         JWTUtils.JWTDto jwtDto = JWTUtils.getJWTDto(token);
         SurveyRecord recentInfo = surveyService.getRecentInfo(jwtDto.getUserId());
         HistoryInfoResp historyInfoResp = new HistoryInfoResp();
-        BeanUtils.copyProperties(recentInfo,historyInfoResp);
+        if(recentInfo!=null){
+            BeanUtils.copyProperties(recentInfo, historyInfoResp);
+        }else{
+            log.info("之前无提交记录，获取历史个人信息失败!");
+        }
         return ApiResponse.ok(historyInfoResp);
     }
 
@@ -50,8 +56,9 @@ public class SurveyController {
     @PostMapping("/submit")
     public ApiResponse submit(@RequestHeader("Authorization") String token, @RequestBody SubmitReq submitReq){
         JWTUtils.JWTDto jwtDto = JWTUtils.getJWTDto(token);
-        surveyService.submit(jwtDto.getUserId(),submitReq);
-        //TODO 问卷调查提交
-        return ApiResponse.ok();
+        log.info("用户提交问卷 userID:"+ jwtDto.getUserId()+" 个人信息:"+submitReq.getInfo());
+        SubmitResp submitResp = surveyService.submit(jwtDto.getUserId(), submitReq);
+//        SubmitResp submitResp = surveyService.submit("demo", submitReq);
+        return ApiResponse.ok(submitResp);
     }
 }

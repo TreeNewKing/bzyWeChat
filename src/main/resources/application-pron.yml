@@ -1,3 +1,8 @@
+app:
+  appId: ${APP_ID}
+  secret: ${APP_SECRET}
+server:
+  port: 80
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

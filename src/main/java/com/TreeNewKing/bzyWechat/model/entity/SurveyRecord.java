@@ -35,7 +35,7 @@ public class SurveyRecord {
      * 体重
      */
     @ApiModelProperty(name = "体重", notes = "")
-    private Double wight;
+    private Double weight;
     /**
      * 身高
      */

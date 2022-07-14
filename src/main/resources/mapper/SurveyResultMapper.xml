@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.TreeNewKing.bzyWechat.dao.SurveyResultMapper">
+     <select id="selectByPage" resultType="com.TreeNewKing.bzyWechat.model.entity.SurveyResult">
+        select * from survey_result ${ew.customSqlSegment}
+    </select>
+</mapper>

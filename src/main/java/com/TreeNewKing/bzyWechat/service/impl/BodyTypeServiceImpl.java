@@ -2,6 +2,7 @@ package com.TreeNewKing.bzyWechat.service.impl;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ import java.util.List;
  * @date : 2022-7-11
  */
 @Service
+@Slf4j
 public class BodyTypeServiceImpl implements BodyTypeService{
     @Autowired
     private BodyTypeMapper bodyTypeMapper;
@@ -28,6 +30,7 @@ public class BodyTypeServiceImpl implements BodyTypeService{
     @Override
     @Cacheable("allBodyType")
     public List<BodyType> findAllBodyType() {
+        log.info("获取全部体质类型");
         return bodyTypeMapper.selectList(new QueryWrapper<>());
     }
 

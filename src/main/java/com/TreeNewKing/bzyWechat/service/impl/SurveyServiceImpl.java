@@ -1,40 +1,42 @@
 package com.TreeNewKing.bzyWechat.service.impl;
 
-import com.TreeNewKing.bzyWechat.dao.OptionScoreMapper;
 import com.TreeNewKing.bzyWechat.dao.ProblemMapper;
+import com.TreeNewKing.bzyWechat.dao.RecordDetailMapper;
 import com.TreeNewKing.bzyWechat.dao.SurveyRecordMapper;
-import com.TreeNewKing.bzyWechat.error.AppException;
-import com.TreeNewKing.bzyWechat.model.entity.Option;
-import com.TreeNewKing.bzyWechat.model.entity.OptionScore;
-import com.TreeNewKing.bzyWechat.model.entity.Problem;
-import com.TreeNewKing.bzyWechat.model.entity.SurveyRecord;
+import com.TreeNewKing.bzyWechat.dao.SurveyResultMapper;
+import com.TreeNewKing.bzyWechat.model.entity.*;
 import com.TreeNewKing.bzyWechat.model.req.SubmitProblem;
 import com.TreeNewKing.bzyWechat.model.req.SubmitReq;
+import com.TreeNewKing.bzyWechat.model.resp.SubmitResp;
 import com.TreeNewKing.bzyWechat.service.SurveyService;
-import com.TreeNewKing.bzyWechat.service.helper.IntegralHelperWithTable;
+import com.TreeNewKing.bzyWechat.service.helper.ScoresRelationship;
 import com.TreeNewKing.bzyWechat.service.helper.Scorecard;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
+@Slf4j
 public class SurveyServiceImpl implements SurveyService {
 
-    private final ProblemMapper problemMapper;
-    private final SurveyRecordMapper surveyRecordMapper;
-    private final OptionScoreMapper optionScoreMapper;
+    @Autowired
+    private ProblemMapper problemMapper;
+    @Autowired
+    private  SurveyRecordMapper surveyRecordMapper;
+    @Autowired
+    private ScoresRelationship scoresRelationship;
+    @Autowired
+    private  SurveyResultMapper surveyResultMapper;
 
-    public SurveyServiceImpl(@Autowired ProblemMapper problemMapper,@Autowired SurveyRecordMapper surveyRecordMapper,@Autowired OptionScoreMapper optionScoreMapper) {
-        this.problemMapper = problemMapper;
-        this.surveyRecordMapper=surveyRecordMapper;
-        this.optionScoreMapper=optionScoreMapper;
-    }
+    @Autowired
+    private RecordDetailMapper recordDetailMapper;
 
     @Override
     public List<Problem> getProblemBank() {
@@ -54,7 +56,7 @@ public class SurveyServiceImpl implements SurveyService {
 
     @Override
     public SurveyRecord getRecentInfo(String userId){
-        QueryWrapper<SurveyRecord> surveyRecordQueryWrapper = new QueryWrapper<SurveyRecord>().eq("user_id", userId).orderByDesc("create_time");
+        QueryWrapper<SurveyRecord> surveyRecordQueryWrapper = new QueryWrapper<SurveyRecord>().eq("user_id", userId).orderByDesc("create_time").last("limit 1");
         SurveyRecord surveyRecord = surveyRecordMapper.selectOne(surveyRecordQueryWrapper);
         return surveyRecord;
     }
@@ -62,60 +64,55 @@ public class SurveyServiceImpl implements SurveyService {
     @Override
     @Transactional
     // 不忘记打开事务
-    public void submit(String userId, SubmitReq submitReq) {
-        //先存一下 提交记录
+    public SubmitResp submit(String userId, SubmitReq submitReq) {
         SurveyRecord surveyRecord = new SurveyRecord();
-        BeanUtils.copyProperties(submitReq,surveyRecord);
+        BeanUtils.copyProperties(submitReq.getInfo(),surveyRecord);
         Date date = new Date();
         surveyRecord.setCreateTime(date);
         surveyRecord.setModifyTime(date);
         surveyRecord.setUserId(userId);
+        log.info("记录提交记录 userId:"+ userId+"surveyRecord:" +submitReq);
         surveyRecordMapper.insert(surveyRecord);
         String surveyRecordId = surveyRecord.getId();
-        //算一下 提交
         List<SubmitProblem> problem = submitReq.getProblem();
         Scorecard scorecard = new Scorecard();
         for (SubmitProblem submitProblem : problem) {
-            recordScore(submitProblem,scorecard);
+            scoresRelationship.recordScore(submitProblem,scorecard);
         }
-
-    }
-    
-    //根据类型积分
-    public void recordScore(SubmitProblem submitProblem, Scorecard scorecard){
-        switch (submitProblem.getType()){
-            case 0:
-                
-            default:
-                //TODO 更多类型
-                throw new AppException();
+        Map<String, Integer> result = scorecard.settlement();
+        recordFillInResults(result,surveyRecordId);
+        SubmitResp submitResp = new SubmitResp();
+        for (String s : result.keySet()) {
+            submitResp.build(s, scoresRelationship.findBodyTypeName(s),result.get(s) );
         }
-        
-    }
-
-
-    public void  recordScoreWithType0(SubmitProblem submitProblem, Scorecard scorecard){
-        IntegralHelperWithTable integralHelperWithTable = new IntegralHelperWithTable();
-        integralHelperWithTable.score(submitProblem,scorecard);
-    }
-
-    //通过 option_score 当type=0时候
-    public IntegralHelperWithTable a(List<OptionScore> list){
-        IntegralHelperWithTable table = new IntegralHelperWithTable();
-        for (OptionScore optionScore : list) {
-            if(optionScore.getType()==0){
-                table.build(optionScore);
-            }else{
-                //TODO 扩展更多得分数与选项的对应关系
+        new Thread(){
+            @Override
+            public void run() {
+                log.info("开始记录 答题细节: userId:"+userId);
+                for (SubmitProblem submitProblem : problem) {
+                    RecordDetail recordDetail = new RecordDetail();
+                    recordDetail.setRecordId(surveyRecordId);
+                    recordDetail.setData(submitProblem.getData());
+                    recordDetail.setType(submitProblem.getType());
+                    recordDetail.setProblemId(submitProblem.getId());
+                    recordDetail.setOptionsId(submitProblem.getOptionsId());
+                    recordDetailMapper.insert(recordDetail);
+                }
+                log.info("答题细节记录完毕: userId:"+userId);
             }
-        }
-        return table;
+        }.start();
+        log.info("得出答题结果 userId："+userId+" 结果："+submitResp);
+        return submitResp;
     }
 
-    @Cacheable("option_scores")
-    public List<OptionScore> getAllOptionScores(){
-        List<OptionScore> optionScores = optionScoreMapper.selectList(new QueryWrapper<>());
-        return optionScores;
+    private void recordFillInResults(Map<String, Integer> result, String surveyRecordId) {
+        for (String s : result.keySet()) {
+            SurveyResult surveyResult = new SurveyResult();
+            surveyResult.setResult(result.get(s));
+            surveyResult.setBodyTypeId(s);
+            surveyResult.setRecordId(surveyRecordId);
+            surveyResultMapper.insert(surveyResult);
+        }
     }
 
 

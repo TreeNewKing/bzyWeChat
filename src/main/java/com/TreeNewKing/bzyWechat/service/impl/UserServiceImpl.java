@@ -49,7 +49,13 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public User login(LoginRequest loginRequest) {
-        AuthResp authResp = getOpenId(loginRequest.getCode());
+        AuthResp authResp=null;
+        if(!Constant.APP_ID.equals("null")){
+            authResp = getOpenId(loginRequest.getCode());
+        }else{
+            //测试的时候使用假 账户
+            authResp = getOpenId1(loginRequest.getCode());
+        }
         QueryWrapper<User> wrapper = new QueryWrapper<User>().eq("open_id", authResp.getOpenid());
         User user = userMapper.selectOne(wrapper);
         Date now = new Date();

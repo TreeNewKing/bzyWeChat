@@ -3,9 +3,11 @@ package com.TreeNewKing.bzyWechat.model.req;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import lombok.ToString;
 
 
 @Data
+@ToString
 public class SubmitProblem {
   @JsonProperty("id")
   private String id;

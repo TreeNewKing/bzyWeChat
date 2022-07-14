@@ -1,6 +1,4 @@
-app:
-  appId: wx432d4facbdc1b900
-  secret: 7d7998ba9bf78f6882707c3e55d5ba07
+
 
 
 spring:
@@ -9,7 +7,7 @@ spring:
     time-zone: GMT+8
   profiles:
 #    部署的时候记得修改这里
-    active: pron
+    active: dev
   mail:
     default-encoding: UTF-8
     host: smtp.qq.com
