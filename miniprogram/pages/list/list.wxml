@@ -22,8 +22,6 @@
     <van-cell title="意见反馈" icon="newspaper-o" is-link link-type="navigateTo" url="/pages/feedback/feedback" />
   </van-cell-group>
 
-
-
   <view class="gap">
     <van-cell-group inset>
       <van-button
@@ -34,4 +32,7 @@
       >退 出 登 录</van-button>
     </van-cell-group>
   </view>
+  
+  <van-toast id="van-toast" />
+  <van-notify id="van-notify" />
 </view>

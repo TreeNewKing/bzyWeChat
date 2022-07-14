@@ -1,6 +1,5 @@
 // index.ts
-// 获取应用实例
-const app = getApp<IAppOption>()
+import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
 
 Page({
   data: {
@@ -38,6 +37,15 @@ Page({
     //     url: '/pages/userinfo/userinfo'
     //   })
     // }
+    if (wx.getStorageSync('token') === '') {
+      setTimeout(() => {
+        wx.switchTab({
+          url: '/pages/list/list'
+        })
+      }, 1000)
+      Toast.fail('请先登录！')
+      return
+    }
     wx.navigateTo({
       url: '/pages/userinfo/userinfo'
     })

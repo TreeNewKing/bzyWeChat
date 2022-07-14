@@ -1,19 +1,21 @@
 // pages/list/list.ts
+import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
+import Notify from '../../miniprogram_npm/@vant/weapp/notify/notify';
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userAvatar: 'http://82.157.232.71/images/wx/user-black.png',
-    userName: '用户名'
+    userAvatar: wx.getStorageSync('userAvatar') || 'http://82.157.232.71/images/wx/user-black.png',
+    userName: wx.getStorageSync('userName') || '用户未登录',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-
   },
 
   /**
@@ -69,12 +71,7 @@ Page({
     wx.openSetting()
   },
 
-  clickToLogin () {
-    wx.login({
-      success: res => {
-        console.log('clickToLogin', res)
-      }
-    })
+  async clickToLogin () {
     this.getUserInfo()
   },
 
@@ -88,15 +85,9 @@ Page({
     //    wx.getUserProfile获取用户信息
     wx.getUserProfile({
       // desc 声明获取用户个人信息后的用途，不超过30个字符
-      desc: 'desc',
+      desc: '注册，登录小程序',
       success: res => {
         if (res.userInfo) {
-          console.log(res);
-          // 待删除
-          _this.setData({
-            userAvatar: res.userInfo.avatarUrl,
-            userName: res.userInfo.nickName
-          })
           /*  wx.login 调用接口获取登录凭证（code）。通过凭证进而换取用户登录态信息，包括用户在当前小程序的唯一标识（openid）、微信开放平台帐号下的唯一标识（unionid，若当前小程序已绑定到微信开放平台帐号）及本次登录的会话密钥（session_key）*/
           wx.login({
             success: ret => {
@@ -107,8 +98,8 @@ Page({
               // 获取用户照片
               var avatarUrl = res.userInfo.avatarUrl;
               // 发送至后端
-              wx.request({
-                url: '',
+              wx.cloud.callContainer({
+                path: '/api/user/login',
                 data: {
                   code: code,
                   nickName: nickName,
@@ -116,29 +107,35 @@ Page({
                 },
                 method:"POST",
                 header: {
+                  'X-WX-SERVICE': 'springboot-cxiq',
                   'content-type': 'application/json' // 默认值
                 },
                 // 数据返回
                 success (resp) {
-                  console.log(resp.data);
+                  console.log('login resp', resp.data);
                   // 将用户id储存于本地
-                  // wx.setStorageSync('userid', resp.data.id);
+                  wx.setStorageSync('token', resp.data.data.token);
                   // 将用户微信信息设置成小程序信息
+                  wx.setStorageSync('userName', res.userInfo.nickName)
+                  wx.setStorageSync('userAvatar', res.userInfo.avatarUrl)
                   _this.setData({
                     userAvatar: res.userInfo.avatarUrl,
                     userName: res.userInfo.nickName
                   })
-                  wx.switchTab({
-                    // 跳转至首页
-                    url: '/pages/index/index',
-                  })
+                  // wx.switchTab({
+                  //   // 跳转至首页
+                  //   url: '/pages/index/index',
+                  // })
+                  Toast.success('登录成功！')
                 }
               })
             }
           })
         } else {
-          console.log('用户拒绝啦');
         }
+      },
+      fail: err => {
+        Toast.fail('登录失败')
       }
     })
   },
@@ -193,6 +190,17 @@ Page({
   },
 
   async clickToLogout () {
-    console.log('clickToLogout')
+    if (wx.getStorageSync('token') === '') {
+      Notify({ type: 'danger', message: '请先登录！', duration: 1000 })
+      return
+    }
+    this.setData({
+      userName: '用户未登录',
+      userAvatar: 'http://82.157.232.71/images/wx/user-black.png'
+    })
+    wx.setStorageSync('token', '')
+    wx.setStorageSync('userName', '用户未登录')
+    wx.setStorageSync('userAvatar', 'http://82.157.232.71/images/wx/user-black.png')
+    Toast.success('用户已退出！')
   }
 })
