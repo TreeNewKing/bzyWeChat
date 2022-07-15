@@ -9,11 +9,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="springboot-wxcloudrun" />
         <module name="bzyWechat" />
+        <module name="bzyWeChat" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="bzyWeChat" options="-parameters" />
       <module name="bzyWechat" options="-parameters" />
       <module name="springboot-wxcloudrun" options="-parameters" />
     </option>

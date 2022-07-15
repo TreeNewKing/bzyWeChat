@@ -1,0 +1,24 @@
+
+
+
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss  #时间戳统一转换为指定格式
+    time-zone: GMT+8
+  profiles:
+#    部署的时候记得修改这里
+    active: dev
+  mail:
+    default-encoding: UTF-8
+    host: smtp.qq.com
+    username: 1164175212@qq.com
+    password: qqxgavkugxiyhhde
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+mybatis:
+  mapper-locations: classpath*:mapper/*Mapper.xml

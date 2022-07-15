@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.TreeNewKing.bzyWechat.dao.HistoryMapper">
+  <select id="getSimpleHistiry" resultType="com.TreeNewKing.bzyWechat.model.resp.SimpHistoryResp">
+      SELECT id,create_time as createTime  from survey_record WHERE user_id=#{userId} order by createTime desc
+  </select>
+    <select id="getDetailHistory" resultType="com.TreeNewKing.bzyWechat.model.resp.DetailHistoryResp">
+        SELECT c.order_by as sequence,a.modify_time as time,c.description ,b.options_id as `options` FROM survey_record as a
+                                                                                                              left JOIN record_detail as b ON a.id=b.record_id and a.id=#{id}
+                                                                                                              inner JOIN problem as c on b.problem_id=c.id
+                                                                                                              LEFT JOIN `options`as d on b.options_id=d.id
+
+    </select>
+    <select id="getUserInfo" resultType="com.TreeNewKing.bzyWechat.model.resp.HistoryInfoResp">
+        SELECT *  from survey_record WHERE id=#{id}
+    </select>
+    <select id="getBodyTypes" resultType="com.TreeNewKing.bzyWechat.model.resp.BodyTypeResult">
+        SELECT c.sequence,b.id,c.name,c.`describe`,b.result
+        FROM survey_record as a inner JOIN survey_result as b on a.id=b.record_id and a.id=#{id}
+                                left JOIN body_type as c
+                                          on c.id=b.body_type_id
+    </select>
+</mapper>
