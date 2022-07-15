@@ -33,6 +33,10 @@ Component({
     type: {
       type: Number,
       value: 0
+    },
+    radio: {
+      type: String,
+      value: ''
     }
   },
 
@@ -40,7 +44,6 @@ Component({
    * 组件的初始数据
    */
   data: {
-    radio: ''
   },
 
   /**
