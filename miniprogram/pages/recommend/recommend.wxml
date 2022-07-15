@@ -1,0 +1,39 @@
+<!--pages/recommend/recommend.wxml-->
+<view class="recommend-container">
+  <view class="content">
+    <text class="finish">您的答卷已经提交，感谢您的参与！</text>
+    <text class="head">您的倾向体质为：</text>
+    <view class="text-flex">
+      <text
+        class="re-text"
+        wx:for="{{recommendBody}}"
+        wx:for-index="index"
+        wx:for-item="item"
+        wx:key="index"
+        data-item="{{item}}"
+        bindtap="clickToTea"
+      >{{item.name}}</text>
+    </view>
+    <text class="head">您的接近体质为：</text>
+    <view class="text-flex">
+      <text
+        class="rec-text"
+        wx:for="{{relativeBody}}"
+        wx:for-index="index"
+        wx:for-item="item"
+        wx:key="index"
+        data-item="{{item}}"
+        bindtap="clickToTea"
+      >{{item.name}}</text>
+    </view>
+    <!-- <text class="rec-text">湿热质(F型)、血瘀质(G型)气郁质(H型)、特禀质(I型)气虚质(B型)</text> -->
+  </view>
+  <view class="button">
+      <van-button
+        type="primary"
+        block
+        custom-class="button-body"
+        bindtap="clickToBody"
+      >体质查询</van-button>
+  </view>
+</view>

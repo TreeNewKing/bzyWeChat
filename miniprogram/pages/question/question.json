@@ -2,5 +2,6 @@
   "usingComponents": {
     "userinfo": "../../components/userinfocell/userinfocell",
     "userinput": "../../components/userinfoinput/userinfoinput"
-  }
+  },
+  "navigationBarTitleText": "填写问卷"
 }

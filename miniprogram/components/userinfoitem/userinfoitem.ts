@@ -11,6 +11,10 @@ Component({
     options: {
       type: Array,
       value: []
+    },
+    radio: {
+      type: Number,
+      value: -1
     }
   },
 
@@ -18,7 +22,6 @@ Component({
    * 组件的初始数据
    */
   data: {
-    radio: ''
   },
 
   /**

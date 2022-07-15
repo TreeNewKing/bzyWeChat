@@ -37,13 +37,7 @@ Page({
     //     url: '/pages/userinfo/userinfo'
     //   })
     // }
-    if (wx.getStorageSync('token') === '') {
-      setTimeout(() => {
-        wx.switchTab({
-          url: '/pages/list/list'
-        })
-      }, 1000)
-      Toast.fail('请先登录！')
+    if (!this.validateLoginStatus()) {
       return
     }
     wx.navigateTo({
@@ -70,6 +64,18 @@ Page({
       radioSex: event.detail,
     });
   },
+  validateLoginStatus () {
+    if (wx.getStorageSync('token') === '') {
+      setTimeout(() => {
+        wx.redirectTo({
+          url: '/pages/login/login'
+        })
+      }, 1000)
+      Toast.fail('请先登录！')
+      return false
+    }
+    return true
+  }
   // 退出登录
   // loginOut() {
   //   this.setData({

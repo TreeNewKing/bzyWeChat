@@ -11,6 +11,7 @@
         placeholder="{{ message }}"
         border="{{ false }}"
         bind:change="onChange"
+        disabled="{{ disable }}"
       />
     </van-cell-group>
   </view>

@@ -8,6 +8,7 @@
       placeholder="请填写问题情况"
       border="{{ true }}"
       label="标题"
+      required
     />
     <van-field
       model:value="{{ describe }}"
@@ -16,15 +17,22 @@
       show-word-limit
       maxlength="200"
       input-class="textarea"
+      required
     />
-    <text class="head">截图</text>
+    <van-field
+      model:value="{{ email }}"
+      placeholder="有助于我们向您反馈结果"
+      border="{{ true }}"
+      label="邮箱"
+    />
+    <!-- <text class="head">截图</text>
     <van-uploader
       file-list="{{ fileList }}"
       deletable="{{ true }}"
       max-count="4"
       bind:after-read="afterRead"
       class="upload"
-    />
+    /> -->
   </van-cell-group>
 
   <view class="button">

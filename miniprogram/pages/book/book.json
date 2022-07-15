@@ -1,3 +1,8 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "userinfo": "../../components/userinfoitem/userinfoitem",
+    "usercell": "../../components/userinfocell/userinfocell",
+    "userinput": "../../components/userinfoinput/userinfoinput"
+  },
+  "navigationBarTitleText": "详细历史记录"
 }

@@ -1,0 +1,12 @@
+<!--pages/login/login.wxml-->
+<view class="login-container">
+  <view class="login-btn">
+    <van-button
+      type="primary"
+      icon="wechat"
+      block
+      custom-class="button-login"
+      bindtap="clickToLogin"
+    >微信登陆</van-button>
+  </view>
+</view>

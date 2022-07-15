@@ -1,2 +1,32 @@
 <!--pages/book/book.wxml-->
-<van-empty description="暂无推荐，等待后续开发" />
+<view class="user-container">
+  <view class="user-head">
+    <text class="head">历史记录</text>
+  </view>
+  <view class="body-info">
+    <userinput value="{{sourceData.professional}}" title="3.您的职业？" message="请填写您的职业" disable="{{true}}" />
+    <userinput value="{{sourceData.teaAge}}" title="4.您的茶龄？" message="请填写您的茶龄" disable="{{true}}" />
+    <userinput value="{{sourceData.height}}" title="5.您的身高(厘米)？" message="请填写您的身高" disable="{{true}}" />
+    <userinput value="{{sourceData.weight}}" title="6.您的体重(千克)？" message="请填写您的体重" disable="{{true}}" />
+    <userinput value="{{sourceData.growthIn}}" title="7.您的出生地？" message="请填写您的出生地" disable="{{true}}" />
+    <userinput value="{{sourceData.lifeIn}}" title="8.您的现居地？" message="请填写您的现居地" disable="{{true}}" />
+    <userinput value="{{sourceData.favoriteTea}}" title="9.您喜欢的茶叶？" message="绿茶、红茶等" disable="{{true}}" />
+  </view>
+  
+  <view class="table-info">
+    <view
+      wx:for="{{questions}}"
+      wx:for-index="index"
+      wx:for-item="item"
+      wx:key="index"
+     >
+      <usercell
+        title="{{item.description}}"
+        data="{{item.options}}"
+        idx="{{item.id}}"
+      />
+     </view>
+  </view>
+
+  <van-toast id="van-toast" />
+</view>

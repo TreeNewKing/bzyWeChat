@@ -8,14 +8,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userAvatar: wx.getStorageSync('userAvatar') || 'http://82.157.232.71/images/wx/user-black.png',
-    userName: wx.getStorageSync('userName') || '用户未登录',
+    userAvatar: 'http://82.157.232.71/images/wx/user-black.png',
+    userName: '用户未登录',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
+    if (wx.getStorageSync('token') === '') {
+      wx.redirectTo({
+        url: '/pages/login/login'
+      })
+    }
+    this.setData({
+      userAvatar: wx.getStorageSync('userAvatar'),
+      userName: wx.getStorageSync('userName')
+    })
   },
 
   /**
@@ -50,7 +59,10 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
+    this.setData({
+      userAvatar: wx.getStorageSync('userAvatar'),
+      userName: wx.getStorageSync('userName')
+    })
   },
 
   /**
@@ -82,7 +94,7 @@ Page({
 
   async getUserInfo () {
     const _this = this
-    //    wx.getUserProfile获取用户信息
+    // wx.getUserProfile获取用户信息
     wx.getUserProfile({
       // desc 声明获取用户个人信息后的用途，不超过30个字符
       desc: '注册，登录小程序',

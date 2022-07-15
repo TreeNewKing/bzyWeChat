@@ -1,0 +1,76 @@
+/* pages/recommend/recommend.wxss */
+.recommend-container {
+  height: 100vh;
+  background-color: rgb(247,248,250);
+  padding-top: 100rpx;
+
+  .content {
+    width: 90%;
+    background-color: #fff;
+    padding-bottom: 60rpx;
+    margin: 0rpx auto;
+    border-radius: 15rpx;
+    box-shadow: 3rpx 3rpx 10rpx rgba(0,0,0,0.1);
+
+    .finish {
+      width: 100%;
+      line-height: 108rpx;
+      display: inline-block;
+      text-align: center;
+      font-size: 30rpx;
+      letter-spacing: 0.0em;
+      margin-top: 10rpx;
+    }
+
+    .head {
+      display: inline-block;
+      margin-top: 20rpx;
+      font-family: '宋体';
+      font-size: 42rpx;
+      text-align: center;
+      width: 100%;
+      line-height: 60rpx;
+      font-weight: 600;
+    }
+
+    .re-text {
+      display: inline-block;
+      font-family: '宋体';
+      font-size: 50rpx;
+      color: red;
+      text-align: center;
+      width: 50%;
+      line-height: 60rpx;
+      margin-top: 6rpx;
+    }
+
+    .text-flex {
+      width: 90%;
+      display: flex;
+      margin: 6rpx 30rpx 0 30rpx;
+      flex-direction: row;
+      flex-flow: wrap;
+    }
+    
+    .rec-text {
+      display: inline-block;
+      font-family: '宋体';
+      font-size: 50rpx;
+      color: #0095ff;
+      text-align: center;
+      width: 50%;
+      line-height: 60rpx;
+      margin-top: 6rpx;
+    }
+  }
+
+  .button {
+    width: 90%;
+    margin: 50rpx auto;
+
+    .button-body {
+      font-size: 34rpx;
+      letter-spacing: 0.2em;
+    }
+  }
+}

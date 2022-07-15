@@ -40,4 +40,6 @@
   <view class="submit">
     <van-button type="info" class="button" block bindtap="submitQuestion">提交</van-button>
   </view>
+
+  <van-toast id="van-toast" />
 </view>

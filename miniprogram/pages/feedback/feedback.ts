@@ -8,7 +8,8 @@ Page({
   data: {
     fileList: [],
     describe: '',
-    title: ''
+    title: '',
+    email: ''
   },
 
   /**
@@ -74,20 +75,22 @@ Page({
       return
     }
     wx.cloud.callContainer({
-      config: {
-        env: 'prod-9gpx0wysac930832'
-      },
-      path: '/feedback',
+      path: '/api/feedback',
       method: 'POST',
+      header: {
+        "Authorization": wx.getStorageSync('token'),
+        "X-WX-SERVICE": "springboot-cxiq",
+        "content-type": "application/json",
+      },
       data: {
         title: this.data.title,
-        describe: this.data.describe
-      },
-      header: {
-        "X-WX-SERVICE": "springboot-cxiq"
+        describe: this.data.describe,
+        email: this.data.email
       },
       success: res => {
-        console.log('submit feedback', res)
+        if (res.statusCode === 200) {
+          Toast.success('反馈成功！')
+        }
       },
       fail: err => {
         console.log('submit feedback error', err)

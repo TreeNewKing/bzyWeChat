@@ -17,7 +17,7 @@ Page({
       bodyType: JSON.parse(options.bodyType_id),
       body: JSON.parse(options.body) + '体质茶叶推荐'
     })
-    console.log('detail', this.data.body)
+    console.log('detail', this.data.body, this.data.bodyType)
   },
 
   /**

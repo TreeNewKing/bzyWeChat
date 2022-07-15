@@ -1,6 +1,6 @@
 <!--pages/userInformation/userInformation.wxml-->
 <view class="info-container">
-  <van-dialog
+  <!-- <van-dialog
     use-slot
     title="昵称修改"
     show="{{ showNickName }}"
@@ -121,7 +121,7 @@
       border="{{ true }}"
       custom-class="field-input"
     />
-  </van-dialog>
+  </van-dialog> -->
 
   <van-cell-group inset>
     <!-- 昵称直接从storage中取微信昵称 -->
@@ -135,7 +135,7 @@
     <van-cell title="现居地" value="{{ lifeIn }}" is-link bind:tap="clickToLifein" />
   </van-cell-group>
 
-  <view class="gap">
+  <!-- <view class="gap">
     <van-cell-group inset>
       <van-button
         type="primary"
@@ -144,5 +144,5 @@
         bindtap="clickToLogout"
       >更改个人信息</van-button>
     </van-cell-group>
-  </view>
+  </view> -->
 </view>

@@ -1,4 +1,6 @@
 // pages/check/check.ts
+import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
+
 Page({
 
   /**
@@ -41,23 +43,36 @@ Page({
       id: 'sdfsdfsdfsd3432576',
       name: '特禀质 (I型)',
       describe: '先天失常，以生理缺陷、过敏反应等为主要特征。过敏体质者常见哮喘、风团、咽痒、鼻塞、喷嚏等。'
-    }]
+    }],
+    loading: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    // wx.cloud.callContainer({
-    //   path: '/api/bodyType',
-    //   method: 'GET',
-    //   success: res => {
-    //     console.log(res)
-    //   },
-    //   fail: err => {
-    //     console.log(err)
-    //   }
-    // })
+    Toast.loading({
+      message: '加载中...',
+      forbidClick: true,
+    });
+    wx.cloud.callContainer({
+      path: '/api/bodyType',
+      method: 'GET',
+      header: {
+        "X-WX-SERVICE": "springboot-cxiq",
+        "content-type": "application/json"
+      },
+      success: res => {
+        const resData = res.data.data
+        this.setData({
+          data: resData,
+          loading: false
+        })
+      },
+      fail: err => {
+        console.log(err)
+      }
+    })
   },
 
   /**

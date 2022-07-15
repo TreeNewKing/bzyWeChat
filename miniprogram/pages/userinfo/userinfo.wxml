@@ -1,7 +1,5 @@
 <!--pages/userinfo/userinfo.wxml-->
 <view class="user-container">
-
-  <van-toast id="van-toast" />
   <view class="user-head">
     <text class="head">填写本人信息</text>
     <text class="content">您好！我们将要收集您的个人身体状态来辅助我们的测试。我们承诺您所提供的全部信息只用于计算您的体质信息，且会进行严格保密，不会用于任何途径的盈利。谢谢您的配合！</text>
@@ -24,15 +22,15 @@
     </view>
   </view> -->
 
-  <userinfo title="1.您的性别？" options="{{['男', '女']}}" bind:submitRadio="getRadio" />
-  <userinput title="2.您的年龄？" message="请填写您的年龄" bind:submitInputValue="getInputValue" />
-  <userinput title="3.您的职业？" message="请填写您的职业" bind:submitInputValue="getProfessionValue" />
-  <userinput title="4.您的茶龄？" message="请填写您的茶龄" bind:submitInputValue="getTeaageValue" />
-  <userinput title="5.您的身高(厘米)？" message="请填写您的身高" bind:submitInputValue="getHeightValue" />
-  <userinput title="6.您的体重(千克)？" message="请填写您的体重" bind:submitInputValue="getWeightValue" />
-  <userinput title="7.您的出生地？" message="请填写您的出生地" bind:submitInputValue="getGrowthValue" />
-  <userinput title="8.您的现居地？" message="请填写您的现居地" bind:submitInputValue="getLifeValue" />
-  <userinput title="9.您喜欢的茶叶？" message="绿茶、红茶等" bind:submitInputValue="getFavoriteValue" />
+  <userinfo radio="{{radio}}" title="1.您的性别？" options="{{['男', '女']}}" bind:submitRadio="getRadio" />
+  <userinput value="{{age}}" title="2.您的年龄？" message="请填写您的年龄" bind:submitInputValue="getInputValue" />
+  <userinput value="{{professional}}" title="3.您的职业？" message="请填写您的职业" bind:submitInputValue="getProfessionValue" />
+  <userinput value="{{teaAge}}" title="4.您的茶龄？" message="请填写您的茶龄" bind:submitInputValue="getTeaageValue" />
+  <userinput value="{{height}}" title="5.您的身高(厘米)？" message="请填写您的身高" bind:submitInputValue="getHeightValue" />
+  <userinput value="{{weight}}" title="6.您的体重(千克)？" message="请填写您的体重" bind:submitInputValue="getWeightValue" />
+  <userinput value="{{growthIn}}" title="7.您的出生地？" message="请填写您的出生地" bind:submitInputValue="getGrowthValue" />
+  <userinput value="{{lifeIn}}" title="8.您的现居地？" message="请填写您的现居地" bind:submitInputValue="getLifeValue" />
+  <userinput value="{{favoriteTea}}" title="9.您喜欢的茶叶？" message="绿茶、红茶等" bind:submitInputValue="getFavoriteValue" />
   <view class="submit">
     <van-button type="info" class="button" block bind:tap="submitUserInfo">提交</van-button>
   </view>

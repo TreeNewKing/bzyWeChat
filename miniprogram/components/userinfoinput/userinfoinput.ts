@@ -15,6 +15,14 @@ Component({
     message: {
       type: String,
       value: ''
+    },
+    value: {
+      type: String,
+      value: ''
+    },
+    disable: {
+      type: Boolean,
+      value: false
     }
   },
 
@@ -22,7 +30,6 @@ Component({
    * 组件的初始数据
    */
   data: {
-    value: ''
   },
 
   /**

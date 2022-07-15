@@ -38,16 +38,25 @@ Page({
    */
   onLoad() {
     wx.cloud.callContainer({
-      config: {
-        env: 'prod-9gpx0wysac930832'
-      },
-      path: '/survey/info',
+      path: '/api/survey/info',
       method: 'GET',
       header: {
-        "X-WX-SERVICE": "springboot-cxiq"
+        "X-WX-SERVICE": "springboot-cxiq",
+        "content-type": "application/json",
+        "Authorization": wx.getStorageSync('token')
       },
       success: res => {
-        console.log('get userInformation', res)
+        const resData: {height: number, weight: number, teaAge: number, favoriteTea: string, professional: string, growthIn: string, lifeIn: string} = res.data.data
+        this.setData({
+          nickName: wx.getStorageSync('userName'),
+          height: (resData.height).toString(),
+          weight: (resData.weight).toString(),
+          teaAge: (resData.teaAge).toString(),
+          favoriteTea: resData.favoriteTea,
+          growthIn: resData.growthIn,
+          lifeIn: resData.lifeIn,
+          professional: resData.professional
+        })
       },
       fail: err => {
         console.log('get userInformation error', err)

@@ -1,5 +1,6 @@
 {
   "usingComponents": {
     "body-cate": "../../components/bodycategory/bodycategory"
-  }
+  },
+  "navigationBarTitleText": "体质介绍"
 }

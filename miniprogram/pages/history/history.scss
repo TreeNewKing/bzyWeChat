@@ -2,7 +2,8 @@
 .history {
   background-color: rgb(247,248,250);
   min-height: 100vh;
-  padding: 40rpx 0 0 0;
+  overflow-y: scroll;
+  padding: 20rpx 0 60rpx 0;
 }
 
 .item-content {

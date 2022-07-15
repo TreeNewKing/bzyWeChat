@@ -1,4 +1,5 @@
 // pages/question/question.ts
+import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
 Page({
 
   /**
@@ -66,7 +67,15 @@ Page({
           description: '总是(非常每天)',
       }]
     }],
-    infoData: null,
+    infoData: {
+      weight: -1,
+      height: -1,
+      favoriteTea: '',
+      teaAge: '', 
+      lifeIn: '', 
+      growthIn: '', 
+      professional: ''
+    },
     answers: []
   },
 
@@ -75,16 +84,22 @@ Page({
    */
   onLoad() {
     // 获取全部题目
-    // wx.cloud.callContainer({
-    //   path: '/api/survey/info',
-    //   method: 'GET',
-    //   success: res => {
-    //     console.log(res)
-    //   },
-    //   fail: err => {
-    //     console.log(err)
-    //   }
-    // })
+    wx.cloud.callContainer({
+      path: '/api/survey/',
+      method: 'GET',
+      header: {
+        'X-WX-SERVICE': 'springboot-cxiq',
+        'content-type': 'application/json' // 默认值
+      },
+      success: res => {
+        this.setData({
+          questions: res.data.data.problems
+        })
+      },
+      fail: err => {
+        console.log(err)
+      }
+    })
     this.setData({
       infoData: JSON.parse(wx.getStorageSync('infoData'))
     })
@@ -157,6 +172,40 @@ Page({
   },
 
   submitQuestion () {
-    console.log('submit', this.data.answers)
+    if (this.data.answers.length === 0) {
+      Toast.fail('请填写表单！')
+      return
+    }
+    for (let i = 1; i < this.data.answers.length; i++) {
+      if (this.data.answers[i] === undefined) {
+        Toast.fail('表单不完整！')
+        return
+      }
+    }
+    // 提交表单
+    const { weight, height, favoriteTea, teaAge, lifeIn, growthIn, professional } = this.data.infoData
+    const data = {
+      problem: this.data.answers.slice(1),
+      info: { weight, height, favoriteTea, teaAge, lifeIn, growthIn, professional }
+    }
+    wx.cloud.callContainer({
+      path: '/api/survey/submit',
+      method: 'POST',
+      data: data,
+      header: {
+        'Authorization': wx.getStorageSync('token'),
+        'X-WX-SERVICE': 'springboot-cxiq',
+        'content-type': 'application/json' // 默认值
+      },
+      success: res => {
+        const resData: Array<{id: String, name: String, result: Number}> = res.data.data.list
+        wx.navigateTo({
+          url: '/pages/recommend/recommend?bodyArr=' + JSON.stringify(resData)
+        })
+      },
+      fail: err => {
+        console.log('error', err)
+      }
+    })
   }
 })

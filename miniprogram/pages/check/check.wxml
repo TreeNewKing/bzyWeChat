@@ -1,6 +1,11 @@
 <!--pages/check/check.wxml-->
 <view class="check-container">
-  <view wx:for="{{ data }}" wx:key="index">
+  <van-toast id="van-toast" wx:if="{{loading}}" />
+  <view
+    wx:if="{{!loading}}"
+    wx:for="{{ data }}"
+    wx:key="index"
+  >
     <body-cate tag="{{item.name}}" desc="{{item.describe}}" bodytype="{{item.id}}" />
   </view>
 </view>
